@@ -1,0 +1,114 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pause all animations when paused */
+.app.paused *,
+.app.paused *::before,
+.app.paused *::after {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+
+/* Exception: Keep control button interactive */
+.app.paused .control-button,
+.app.paused .control-button * {
+  animation-play-state: running !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Play/Pause Control Button */
+.control-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 20, 147, 0.5);
+  background: rgba(10, 14, 39, 0.7);
+  backdrop-filter: blur(10px);
+  color: #ff1493;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 15px rgba(255, 20, 147, 0.3),
+    0 0 20px rgba(255, 20, 147, 0.2);
+}
+
+.control-button:hover {
+  background: rgba(255, 20, 147, 0.2);
+  border-color: rgba(255, 20, 147, 0.8);
+  transform: scale(1.1);
+  box-shadow: 
+    0 6px 20px rgba(255, 20, 147, 0.5),
+    0 0 30px rgba(255, 20, 147, 0.4);
+}
+
+.control-button:active {
+  transform: scale(0.95);
+}
+
+.control-button svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .control-button {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .control-button svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .control-button {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    bottom: 15px;
+    right: 15px;
+    border-width: 1.5px;
+  }
+
+  .control-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .control-button {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .control-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
